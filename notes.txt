@@ -135,4 +135,86 @@
 					## importing statement in normal js is not supported so to make it supportive we have to add type="module" in script tag
 
 
+			
+				
+						----------------------------------------------------------------------------------
+						
+						
+		3. Laying the foundation 
+						
+							
+				-- start/run our project 
+						package.json --> scripts --> see the scripts to run project -->
+						[ npm run  .....script.... ] or [npm start]
+				-- we can customize our own scripts to start our project
+				
+				## React.createElement() ==> Object ==> ReactDOM ==> HTML ==> Replace Root 
+				
+				JSX : 
+						-- is a js syntax which make it  easy to create react element.
+						-- JSX is not a part of react.
+						-- we can build React app without JSX.
+						-- JSX is not HTML inside javascript it is HTML like syntax
+						-- for ex. const jsxHeading = <h1> Namaste React From JSX </h1>; it is a react element.
+						-- we have to give className if we want to pass class in tag 
+						-- attributes should be in camelCase in jsx.
+						-- If we want multiple lines then wrap that inside paranthesis.
+						-- if we want to write any js inside JSX  then use {};
+						-- JSX takes care about injections (Cross site scripting)
+						-- Cross site script : if user tries to execute some malicious things on our machine using input fields
+						
+						
+				Create Element :
+				
+				# using React :
+					const reactHeading = React.createElement('h1',{id:"heading"},"Namaste React From React");
+				# using JSX :
+					const jsxHeading = <h1> Namaste React From JSX </h1>;
+					
+					-- this two objects are same.
+					-- Js engine only understands ECMAscript, js engine not understand JSX.
+					-- so  how this code runs ??
+							-- this jsx code is transpiled by the parcel(babel) before goes into the js engine, & then js engine receives the 
+								code that browsers can understand.
+							-- babel : Transpiling the jsx code to the code which browser(JS engine) can understand.
+							
+				## JSX =---Babel---=> React.createElement() ==> Object ==> ReactDOM ==> HTML ==> Replace Root 
+					
+					-- Babel : JSX got convert to React.createElement
+					
+					
+					-------
+					
+					Component : Everything in react is component.
+						
+							-- Class based component 
+									-- old 
+							-- functional based component
+									-- new 
+									-- Its a normal js function which returns some JSX elements
+									-- A js function which returning react element.
+									-- Functional component name should be start with capital letter.
+									-- How to render component ==> root.render(<Fn_Header2/>); Call function Fn_Header2() inside {};
+									-- Component Composition : we can render one component inside another component multiple times also.
+									-- const jsxHeading = ()=> (<h1> Namaste React From JSX </h1>);
+									
+					Element 
+							--> const jsxHeading = (<h1> Namaste React From JSX </h1>);
+					component
+							--> const Heading = ()=> (<h1> Namaste React From JSX </h1>);
+							
+						we can write jsx element inside component using {} 
+						for e.g. {jsxHeading}
+						
 
+
+
+
+
+
+
+
+
+
+
+<<<--------------------------------------- END ----------------------------------------------->>>

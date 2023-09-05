@@ -30,11 +30,18 @@ const Fn_Header1 = ()=>{
   return <h1>Header 01 from Fn_Header1</h1>
 };
 
+const Fn_Component = () =>(
+<mark>Akshay Daundkar From component function</mark>
+);
+
 // another way
 
 const Fn_Header2 = ()=>(
   <div>
     <Fn_Header1/>
+    <Fn_Header1/>     {/* Way to render Component in Component   */}
+    {jsxElement}      {/* Way to render jsxElement in Component   */}
+    {Fn_Component()}  {/* Another way to render Component   */}
   <h1>Header 02 from Fn_Header2</h1>
   </div>
 );
