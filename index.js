@@ -22,5 +22,29 @@ const jsxElements = (
 
 console.log(jsxElements);
 
+//---------- Functional component -----------
+
+// two ways to write component
+
+const Fn_Header1 = ()=>{
+  return <h1>Header 01 from Fn_Header1</h1>
+};
+
+// another way
+
+const Fn_Header2 = ()=>(
+  <div>
+    <Fn_Header1/>
+  <h1>Header 02 from Fn_Header2</h1>
+  </div>
+);
+
+// component composition - component inside another component
+
+// How to render ??
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(jsxElements);
+root.render(<Fn_Header2/>);
+
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(jsxElements);
