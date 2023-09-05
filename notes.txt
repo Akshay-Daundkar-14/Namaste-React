@@ -45,3 +45,94 @@
 					## It is hard create element using createElement so to get rid of this we have JSX.
 					## Root is just get replaced by the element which we have passed inside render.
 					## React is library which can work on the small portion of web page also.
+
+			--------------------------------------------------------------
+											
+			2. Igniting our app : 
+			
+					-- Lots of other libraries,things that are required to make our app fast (production ready).
+					
+					>> npm : -- Manages packages 
+							 -- Repository for all packages 
+							 -- npm init
+							 
+					>> package.json : Configuaration for NPM 
+										-- it will manage all the packages that we install in our system
+										-- this packages also known as dependancy 
+										-- npm will take care of version of that package.
+										-- It keeps the 'approx' version
+										-- maintains the notes what all dependancies our project needs.
+										-- "browserslist" : use to support particular browser
+																-- "last 2 Chrome version" -- 100% work on chrome
+										
+								Bundler : 
+											-- Bundler is bundles our app so that we can ship our project to production
+											-- minified | cached | compress | clean before sending to the production 
+											-- ex.  webpack | parcel 
+											
+								Two types of dependancies :
+								
+									1. Dev dependancies
+											-- Development phase
+											-- npm install -D parcel // I want parcel into my app as a dev dependancy
+									2. Normal dependancies
+											-- Production phase
+											-- React | ReactDOM
+											
+					# Parcel :
+								-- Gives muscles to bones. :)
+								-- MINOR : if we have put ^(caret) then parcel will automatically upgrade to new minor version.
+												"parcel":"^2.8.3" --> 2.8.4
+								-- MAJOR : if we have put ~(tilde) then parcel will automatically upgrade to new MAJOR version.
+												"parcel":"~2.8.3" --> 3.0.0
+								-- Dev build : Ignite : npx parcel index.html
+								-- Prod build : Ignite : npx parcel build index.html // remove "main" from package.json
+								-- npm -> install the packages
+								-- npx -> executes the packages
+								-- it goes to the source (index.html) and build a development build for our app & host that on localhost:1234
+								-- HMR : Hot module replacement : On save changes it makes changes in browser automatically.like HOT RELOAD
+											-- File watching algorithm
+								-- Caching - Faster builds -- So thats why it creates parcel-cache folder
+								-- Image Optimization
+								-- Minification
+								-- Bundling
+								-- Compressing
+								-- consistant hashing - Keep the track
+								-- Code splittting 
+								-- differential bundling - To support older browser
+								-- Diagnostics
+								-- Error handling
+								-- HTTPS
+								-- Tree shaking algorithm - remove unused code for you.
+								-- it generates the dev build for project & host it on 1234 port , when generates build it puts it up in the "dist folder"
+										-- it generates three files. HTML CSS JS file in dist folder.
+												
+					>> package-lock.json :
+								-- it keeps the track of 'exact' version that is being install.
+								-- it keeps the exact version
+								-- integrity : SHA512 hash - keeps a hash to verify whatever version in my machine must be the same version
+														which should deploy on production
+								-- It is important to maintain package | package-lock on github repository. so that we can regenerate our
+									node_modules. so huge size of node_modules no need to push over  the repository.
+								
+														
+					>> node_modules : 
+								
+								-- node modules contains all the code that we fetch from NPM.
+								-- it contains actual data of that dependancies
+								## Transitive dependancies : parcel as a project has its own dependancies &
+									its dependancies will have its own dependancies	this phenomenon is known as Transitive dependancies
+								-- In our project every dependancy has its own package.json & its own dependancies so our project 
+										can have lots of package.json.
+										
+					>> .gitignore : 
+								-- if you want some files should not go in production & on github then we can put them inside the 
+										gitignore.like node_modules
+										
+					## CDN links are not the preffered way to bring react in our app 
+						why?? --> rather than making request (network call) to the CDN server it will be easy to get things from node_modules
+										
+					## importing statement in normal js is not supported so to make it supportive we have to add type="module" in script tag
+
+
+
