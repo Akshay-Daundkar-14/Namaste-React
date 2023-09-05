@@ -1,42 +1,26 @@
 import React from "react";
-//import ReactDOM from "react-dom";
 import ReactDOM from "react-dom/client";
 
+// React.createElement ---> Object --> HTML
 
- 
- const element =  React.createElement('h1',{id:'heading',key:"ele1"},'Hello world from REACT - H1');
-  const element2 =  React.createElement('h2',{id:'heading2',key:"ele2"},'Hello world from REACT  - H2');
+const element = React.createElement("h1", { id: "heading" }, "Namaste React !");
+console.log(element);
 
-const child =  React.createElement('div',{id:'child'},[element,element2]);
-// const parent = React.createElement('div',{id:'parent'},child);
+// JSX -->  React.createElement ---> Object --> HTML
 
+const jsxElement = <h1 id="heading">Namaste From JSX</h1>;
+console.log(jsxElement);
 
+// Multiple Lines
 
-
-
-const parent = React.createElement('div',{id:'parent'},
-[
-    React.createElement('div',{id:'child1',key:"child1"},child),
-    React.createElement('div',{id:'child2',key:"child2"},child)
-]
+const jsxElements = (
+  <div>
+    <h1 id="heading">Namaste From JSX</h1>
+    <h2>Heading two</h2>
+  </div>
 );
 
+console.log(jsxElements);
 
-
-//-----------------------
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(parent);
-
-//---------------------
-// setTimeout(() => {
-//     const top1 = ReactDOM.createRoot(document.getElementById('top'));
-// top1.render(React.createElement('h1',{id:'myTop'},"TOP from react"));
-// }, 5000);
-
-
-// //---------------------
-// setTimeout(() => {
-//     const bottom1 = ReactDOM.createRoot(document.getElementById('bottom'));
-//     bottom1.render(React.createElement('h1',{id:'myBottom'},"BOTTOM from react"));
-// }, 5000);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(jsxElements);
