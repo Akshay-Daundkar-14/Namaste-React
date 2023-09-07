@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import RestraurantCard from "./RestraurantCard";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [listOfTopRestaurants, setListOfTopRestaurants] = useState([]);
+  const [inputText, setInputText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -19,29 +22,68 @@ const Body = () => {
     setListOfRestaurants(
       jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
     );
+    setListOfTopRestaurants(
+      jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
+    );
   };
 
-  const filterTopRestaurant = ()=>{
-    const filteredData = listOfRestaurants.filter((res)=>res.info.avgRating >= 4);
-    setListOfRestaurants(filteredData);
-  }
+  const filterTopRestaurant = () => {
+    const filteredData = listOfRestaurants.filter(
+      (res) => res.info.avgRating >= 4.5
+    );
+    setListOfTopRestaurants(filteredData);
+  };
 
-  return (
-    <div className="body">
-      <div className="search">
-        <button onClick={filterTopRestaurant}>Top Restaurants</button>
-      </div>
+  const searchRestaurant = () => {
+    const filteredData = listOfRestaurants.filter((res) =>
+      res.info.name.toLowerCase().includes(inputText.toLowerCase())
+    );
+    setListOfTopRestaurants(filteredData);
+  };
+
+  if (listOfTopRestaurants.length === 0) {
+    return (
       <div className="res-container">
-        {/* {listOfRestaurants.map((res)=>
-          <RestraurantCard resName={res.info.name} key={res.info.id} imageId={res.info.cloudinaryImageId}
-          cuisine={res.info.cuisines.join(',')} rating={res.info.avgRating} minutes={res.info.sla.slaString}/>
-        )} */}
-         {listOfRestaurants.map((res)=>
-          <RestraurantCard resData={res.info} key={res.info.id}/>
-        )}
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="body">
+        <div className="search-container">
+          <input
+            type="text"
+            className="search"
+            placeholder="search restaurant here.."
+            value={inputText}
+            onChange={(e) => {
+              setInputText(e.target.value);
+            }}
+          />
+          <button className="btn" onClick={searchRestaurant}>
+            SEARCH
+          </button>
+          <button className="btn" onClick={filterTopRestaurant}>
+            Top Restaurants
+          </button>
+        </div>
+        <div className="res-container">
+          {listOfTopRestaurants.map((res) => (
+            <RestraurantCard resData={res.info} key={res.info.id} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 };
 
 export default Body;

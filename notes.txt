@@ -14,7 +14,9 @@
 					 
 			>> CORS : CORS stands for Cross-Origin Resource Sharing,
 					   and is a mechanism that allows 
-					   resources on a web page to be requested from another domain outside their own domain
+					   resources on a web page to be requested from another domain outside their own domain.
+					   
+					>> our browser block us to call api from one origin to another origin
 			
 			>> Cross-Origin : 			
 						The crossorigin attribute sets the mode of the request to an HTTP CORS Request.
@@ -43,7 +45,7 @@
 									
 								>>> ReactElement(Object) ==> HTML (Browser Understands) <<<
 								
-					## It is hard create element using createElement so to get rid of this we have JSX.
+					## It is hard create to element using createElement so to get rid of this we have JSX.
 					## Root is just get replaced by the element which we have passed inside render.
 					## React is library which can work on the small portion of web page also.
 					
@@ -223,9 +225,134 @@
 							
 					## Key : Why we need to provide key ??
 					
-							-- if new comonent cames & if we didn't provide unique id then react re-render all components , it don't know
+							-- if new comonent cames & if we didn't provide unique key then react re-render all components , it don't know
 								on which position should i kept new component
 							-- But if we provide unique id then it will only render that newly come component
 							-- never use index as a key 
 							
 						Not using key <<<<< Index <<< Unique Key 
+						
+						
+						------------------------------------------------------------------------
+						
+				Ep 05 - Let's get hooked 
+						
+						>> Never put hardcoded data in component
+						>> two types of exports --> 1. Default exports
+															-- if we want to export single thing
+												    2. Named exports
+															-- if we want to export multiple things
+															-- export {thing1 , thing2};
+															-- import {thing1 , thing2} from '././...';
+															
+						>> State Variable :
+								-- super powerful variable
+								-- We use hooks - useState()
+								-- with normal variable we can get data as we want but it will not affect DOM once DOM rendered
+								-- but with local react state variable we can get data as we want and
+										it will also affect DOM beacause it is sync with UI.
+								-- react is fast because it is very fast at virtual DOM manipulation
+								
+						>> Hooks : 
+						
+								-- react hook is normal js utility function given by react
+								-- useState() |  useEffect()
+								-- useState():
+										-- superpowerful react state variable
+										-- maintain the state of component
+										-- ***whenever state variable updates react re-render the component***
+												react continously keep the track of it.
+												
+					## How we are updating const variable in useState ??			
+							-- whenever value updates it re-render the component & create new const variable along with updated value,
+							so this is actually not updating const variable.
+										
+										
+							# local state variable 
+									
+							 const [listOfRestraurants,setListOfRestraurants] = useState([]);
+									
+							 const[variable ,update variable by function (setListOfRestraurants)] = useState(default value);
+									
+									
+							# Normal js variable 
+							
+									let listOfRestraurants = default value;
+									
+					------------------------------------------------------------------
+					
+					why react is fast ?
+					
+							-- effecient DOM manipulation.
+					
+					Reconciliation algorithm : 
+					
+							-- also known as react fiber(react 16)
+							-- whenever there is change in something is Reconciliation.
+							-- virtual DOM : 	-- js object representation of actual DOM
+												-- it is simple js object similar to the object created by createElement function.
+												
+							-- Diff algorithm  :
+									-- find out the difference between updated virtual dom & previous virtual dom & then update the 
+										actual DOM in every cycle.& change the only part that updated.
+									-- finding out diff between two js object is easy & fast so because of that react is fast.
+									
+							-- Whenever state variable update, react trigger a reconciliation cycle (re-render Component).
+							-- React Re-render the whole component but it is only update the things "which are updated" inside the DOM
+									
+						ex. 7 cards --- [ Virtual DOM | Diff algorithm ] ---> 3 cards
+						
+						
+						--------------------------------------------------------------------------
+						
+						
+					Ep.06 -	Exploring the world :
+						
+						
+							 ** Monolith  architecture | Microservice architecture **
+							 
+							 Monolith  architecture  :  -- Everything inside the same project 
+														-- API | UI | Authentication | DB connection | SMS
+														
+							Microservice architecture  : 
+							
+													-- Everything inside the different project 
+													-- this are the microservices comes together create one project 
+													-- Seperation of concern - SRP (single responsibility principle)
+													-- Any language we can use to create microservice
+													
+													
+										-----------
+										
+								Two ways to fetch data through API call
+									
+										1. page load --> make api call --> render UI
+										2. page load --> render UI --> make API call --> rerender with API
+										
+											-- using "fetch" we can fetch API
+										
+						-----------
+						
+						Hook 02 : useEffect ()
+						
+									-- this callback will call after component get render.
+						
+									-- two arguments 
+											1. callback function 
+											2. dependancies
+											
+									useEffect(()=>
+									{
+									},[]);
+											
+			
+			## Optional Chaining : (?) ==> Not throw error if data is not there. ex. res?.card?.card
+			
+			## Shimmer UI : Loading the fake page until we get the actual data from API
+			## Conditional Rendering : rendering on the basis of condition  
+			
+			
+											
+													
+							
+							 
