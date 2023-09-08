@@ -20,32 +20,31 @@ const Body = () => {
     );
     const jsonData = await data.json();
     setListOfRestaurants(
-      jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
+      jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setListOfTopRestaurants(
-      jsonData.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
+      jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
   const filterTopRestaurant = () => {
-    const filteredData = listOfRestaurants.filter(
-      (res) => res.info.avgRating >= 4.5
+    const filteredData = listOfRestaurants?.filter(
+      (res) => res.info.avgRating >= 4
     );
+    console.log("filteredData",filteredData)
     setListOfTopRestaurants(filteredData);
   };
 
   const searchRestaurant = () => {
-    const filteredData = listOfRestaurants.filter((res) =>
+    const filteredData = listOfRestaurants?.filter((res) =>
       res.info.name.toLowerCase().includes(inputText.toLowerCase())
     );
     setListOfTopRestaurants(filteredData);
   };
 
-  if (listOfTopRestaurants.length === 0) {
+  if (listOfTopRestaurants?.length === 0) {
     return (
       <div className="res-container">
-        <Shimmer />
-        <Shimmer />
         <Shimmer />
         <Shimmer />
         <Shimmer />

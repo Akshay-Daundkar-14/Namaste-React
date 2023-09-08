@@ -257,7 +257,11 @@
 						
 								-- react hook is normal js utility function given by react
 								-- useState() |  useEffect()
-								-- useState():
+								-- Always starts with 'use'
+								
+				-----------------------
+								
+				-- Hook 01 : useState():
 										-- superpowerful react state variable
 										-- maintain the state of component
 										-- ***whenever state variable updates react re-render the component***
@@ -268,16 +272,38 @@
 							so this is actually not updating const variable.
 										
 										
-							# local state variable 
-									
-							 const [listOfRestraurants,setListOfRestraurants] = useState([]);
-									
-							 const[variable ,update variable by function (setListOfRestraurants)] = useState(default value);
-									
-									
-							# Normal js variable 
-							
-									let listOfRestraurants = default value;
+										# local state variable 
+												
+										 const [listOfRestraurants,setListOfRestraurants] = useState([]);												
+										 const[variable ,update variable by function (setListOfRestraurants)] = useState(default value);
+												
+												
+										# Normal js variable 										
+												let listOfRestraurants = default value;
+												
+										
+										-- never create useState outside of the component
+										-- Always try to use useState on the Top of functional component
+										-- Never create useState inside a condition | For loop | Function 
+												
+				--------------------
+						
+						Hook 02 : useEffect ()
+						
+									-- this callback will call after component get render.
+									-- Every time component render the useEffect will be called but because of dependancy array provided 
+										it changes the behaviour of its render.
+									-- If not dependancy array => useEffect will also get called after every render.
+									-- if empty dependancy array => useEffect will call on initial render just once
+									-- if something in dependancy array => useEffect will call whenever dependancy changes.
+						
+									-- two arguments 
+											1. callback function 
+											2. dependancies
+											
+									useEffect(()=>
+									{		-- callback function 
+									},[]);-- Dependancy array
 									
 					------------------------------------------------------------------
 					
@@ -322,7 +348,7 @@
 													-- Any language we can use to create microservice
 													
 													
-										-----------
+						--------------------
 										
 								Two ways to fetch data through API call
 									
@@ -331,19 +357,9 @@
 										
 											-- using "fetch" we can fetch API
 										
-						-----------
 						
-						Hook 02 : useEffect ()
-						
-									-- this callback will call after component get render.
-						
-									-- two arguments 
-											1. callback function 
-											2. dependancies
-											
-									useEffect(()=>
-									{
-									},[]);
+									
+						---------------
 											
 			
 			## Optional Chaining : (?) ==> Not throw error if data is not there. ex. res?.card?.card
@@ -352,7 +368,96 @@
 			## Conditional Rendering : rendering on the basis of condition  
 			
 			
-											
+			------------------------------------------------------------------------------------------------
 													
+							Ep.07 -- Finding the path
 							
+					-- Routing 
+					-- Nested Routing
+					-- Hooks 
 							 
+							 -------------
+							 Routing :
+								
+								-- React Router Library -- npm i react-router-dom
+								-- Routing configuration
+												--> createBrowserRouter 
+															-- Some information about what will happen on specific route.
+															-- const appRouter = createBrowserRouter([
+																	{
+																		path:'/',element:<AppLayout/>,errorElement:<Error/>
+																	},
+																	{
+																		path:'/about',element:<About/>
+																	}
+															]);
+															
+															---- for error
+															
+												--> RouterProvider 
+															-- it provides this routing configuration to our app
+															-- root.render(<RouterProvider router={appRouter}/>);
+															
+							-- Children Routes 
+									-- To just change body and keep header & footer over there 
+									-- 'Outlet' component will be replace by the child component according to path.
+									-- const appRouter = createBrowserRouter([
+																	{
+																		path:'/',
+																		element:<AppLayout/>,
+																		children : [
+																				{
+																					path:'/about',element:<About/>
+																				},
+																				{
+																					path:'/',element:<Body/>
+																				},
+																				{
+																					path:'/contact',element:<Contact/>
+																				},
+																		],
+																		errorElement:<Error/>
+																	},
+																	
+																	]);
+																	
+						-- How to link this routing things ??
+						
+							-- don't use anchor <a></a> tag to navigate because it refersh the page
+							-- use 'Link' component from react-router-dom
+										-- <Link to='/contact'>Contact</Link>
+										-- Link is a wrapper over the anchor tag & it keeps the tract of this link.
+										-- page will not referesh 
+										-- this is why we call react as SPA 
+										
+						-- useRouterError :
+								
+									-- use to state appripriate error 
+										
+										
+								---------
+								
+								Two types of routing in web app 
+								
+									-- Client side routing
+												-- We alredy have components loaded 
+												-- whenever we hits for contact page then it just loads contact comonent for us.
+									
+									
+									-- server side routing 
+											-- It relaod the whole page sends the request call to html page & fetch that html & 
+													renders on the web
+													
+							--------------------
+							
+							{
+									path:'restaurants/:resId' <<<<<--------- Over here resId is dynamic 
+									element : <RestaurantMenu/>
+							}
+							
+							GraphQL : Load only data which is need for our applications
+							
+							
+								--------------------
+								
+								

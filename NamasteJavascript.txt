@@ -1,0 +1,365 @@
+												🙏 Namaste Javascript 🙏
+												
+									
+		>> Execution Context : Whatever happens in javascript is happens inside execution context.
+									-- Two components : (1) Memory component / variable environment
+																	-- Key value pair collection
+														(2) Code component / Threads of execution  
+																	--  Code is executed one line at a time 
+																	
+						# Javascript is synchronous, single threaded language.
+							* synchronous : order of execution is specific
+							* single - threaded :execute only one command at a time
+							
+				-- Execution context created in two phases :
+
+				1. Memory Creation phase 
+						-- allocation of memory 
+						-- In the first phase, variables : allocate and assign as 'undefined' & functions : with all its code
+                2. Code Execution Phase
+						-- In the 2nd phase, 
+								-- Values will be assign to the allocated variables
+								-- For function : -- it will create new execution context whenever we invoke the function.
+												-- and also it will delete that newly created execution context
+													once value returns or function totally executes.
+												-- return statement : it gives cursor back to the execution context.
+												
+				>> call stack : it maintains the order of execution of 'Execution context'.
+								-- whenever new execution context created it will push inside stack
+								-- whenever execution context deleted it will also delete it from stack
+								-- also known as 1. Execution context statck 2.Program stack 3. control stack 4. runtime stack
+												5. Machine stack
+												
+											-----------------------------
+											
+		2. Function Hoisting :
+			
+			Hoisting in Javascript : It is a phenomenon in js by which you can access function & variables even before you have
+										initialize it.We can access it without any error.
+										
+					 >> if we try to access things before initialize it
+								-- variable : Undefined
+								-- funtion : executes (Note : It will not work in case of arrow function because it treats it as a Variable)
+								
+								Difference between Undefined VS Not Defined
+								
+								Undefined : --  Memory got allocate in Execution context
+											--  It is like a placeholder which placed in the memory.
+								Not Defined : Memory will not allocate in Execution context
+								
+											-----------------------------
+											
+		3. Shortest Javascript Program :
+		
+		Window : Window is the globel object which get created along with globel execution context.
+		this : at globel level "this" points to the window object. 
+										
+			-- Chrome provides JS engine : V8			
+			-- Every Engine has responsibility to create globel window object.
+			-- at the globel level [this === window ]
+			-- Globel space : anything which is not there in function is a globel space.
+			
+			
+											------------------------------
+											
+		4. Scope & Lexical Environment :
+		
+			Scope : Where you can access the specific variable and function in our code.
+			
+			>> Whenever a execution context is created the lexical environment also created.
+			
+			** Lexical Environment : it is a local memory along with the reference to lexical(local) environment of its parents.
+			Lexical : Hirarchical 
+			** Scope Chain : The way / mechanism of finding out variables in different Lexical Environment is known as scope chain.
+			
+											------------------------------
+			
+		5. Let & const
+		
+					-- Let & const declarations are hoisted but in different memory location.
+					-- And we can only access it by initialize it.
+					
+			# Temporal dead zone : Time gap between undefined (const & let) to the initialize value.
+			# Reference Error : if we try to access variables in Temporal Dead Zone then in such cases it gives us error.
+			
+			
+			Difference LET VAR CONST
+			
+			VAR : 
+					1. Globel scope 
+					2. we can redeclare variables in the same scope 
+					3. Hoisting in globel scope
+					
+			Let : 
+					1. Strict than VAR. Blocked Scope. when decalre globally comes under the "script" scope
+					2. We can't redeclare it gives us syntax error  in the same scope 
+					3. Hoisting is done in different/separate memory location.
+					4. Not mandatory to initialize value at the time of declaration
+					5. We can assign value later anywhere in the program
+			CONST : 
+					1. More strict than LET, Blocked Scope. when decalre globally comes under the "script" scope
+					2. Hoisting is done in different/separate memory location.
+					3. Mandatory to initialize value at the time of declarations
+					4. We cannot assign value later anywhere in the program
+					
+	Syntax (readeclare let varible) |
+	Type (CONST - assign value to the const after initialize & declaration) |
+	Reference  Error (temporary dead zone)
+	
+										 ------------------------------
+										 
+			# Scope Of Let & Const
+			
+					>> Let & const are the blocked scope.
+					
+					>> Blocked : Wrappinig up multiple statements so that we can use a place where js expects one statement.
+					>> Shadowing : getting values from blocked scope.
+					>> Lexical Scope also works here in case of let , const , var keyword
+					
+					
+										------------------------------
+										
+			# Closure function : A Function binds together with its lexical environment.
+								-- Function along with its lexical scope is closure.
+								-- In js we can directly pass function as a parameter but we can't do the same with c#
+										for c# we have delegates.
+								-- we can return a whole function also. & that return functions also memorizes it's lexical scope
+									no matter where you have called this.Because not just function return alogn with function
+										it's lexical scope also return								
+								-- it is refereing the variables not values so that variable points to the values
+										still there in memory and collectted by the garbage collector if we are returning the 
+											functions from another function.
+						# Uses of closure :
+								>> data Hide /  Encapsulation
+								>> Module design pattern
+								>> Currying
+								>> Function like once 
+								>> memoize
+								>> maintaining state in async world 
+								>> set timeouts 
+								>> iteration
+								
+						# Disadvantages of closure :
+						
+								>> Consumption of memory
+								>> variables are not clean by garbage collector untill the programs ends
+							
+						# Garbage Collector : This are the programs in the engine which frees up the unutilised memory.
+								
+										------------------------------
+										
+		# Set Timeout :	
+				
+				>> Javascript takes the settimeout, alocate it somewhere in the memory and attach time to it.
+					it refers to the variable (remembers the reference to the variable) then until 
+					the time completes js executes another piece of code.
+					Once time completes it pushes it in callback queue & then in call stack and executes it.
+				>> Js waits for none.
+				
+										------------------------------
+										
+		# Functions in js
+		
+			1. function statement / function declaration : 
+					function printa(){}
+					
+			2. function expression :
+					var printa = function(){};
+					
+							## differnce between function statement vs function expression 
+									-- ans : HOISING 
+									
+			3. Anonymous function : 
+							-- function without name
+							-- function(){} 
+							-- we can't call it directly - Syntax Error
+							-- we can pass it as a callback function
+							-- we can use this to pass as a value
+							
+			4. Named function expression :
+			
+							var printa = function Fn_Printa(){}; 
+								
+								-- we can access it like printa() but can't like Fn_Printa() ** Reference Error
+									because Fn_Printa is not defined in globel scope.
+									
+			## IMP 5. First Class Function / First class citizen :	
+			
+						-- We can pass function inside function as an argument.
+						-- We can returns the function from the function.
+						-- The ability to use function as a value and pass it as an argument is FCF.
+						
+			6. Arrow function:
+			 
+						()=>{}
+						
+						-- callback function.
+						-- ES 06 
+						
+											------------------------------
+											
+				# Callback Functions : The function which pass as a argument to the another function is known as 
+										callback function.
+										
+									-- callback fn are very important in js because it gives access to asynchronous world
+										with a synchronous single threaded language 
+									-- Means Due to callback we can do async things inside JS.
+									
+						## Asynchronous : 	
+						
+								-- javascript wait for none
+								-- when we use settimeout along with callback function it becomes asynchronous
+								
+				## Main Thread :
+						-- js has only one call stack 
+						-- Everything in js will execute thorugh this call stack, if any operation blocks the call stack 
+							that is known as the blocking the main thread.
+							
+				## Garbage Collection & removeEventListeners
+				
+					-- EventLisners are heavy they takes some memory bacause we cannot know when will buttons will click
+						they takes up that memory and thats why removeEventListeners is important.
+					-- if we remove eventListner then all the variables held by the closure will be collected by the garbage 
+						collector 
+					
+												------------------------------
+												
+					# Event Loop : 
+					
+					
+					 # js don't have actual power. Browser provides it huge amount of power by WEB API like 
+					 
+							settimeout - timer
+							DOM API    - document.
+							fetch 	   - to connect with other servers
+							local storage - Browser storage
+							console  - Browser console
+							location 
+							
+					>> All this above things are provided in "window object" by browser.
+					
+					Call Stack <<---->> Event Loop <<----> [MicroTask Queue(Higher Priority) | Callback Queue]
+						
+					
+				Event Loop : it's job is to continously moniter call stack and callback queue
+								>> if call stack is empty only then it gives chance to exceute MicroTask Queue first then 
+									callback queue.
+								>> MicroTask Queue(Higher Priority) : Fetch API | Returns promises
+								>> Callback Queue : SetTimeout | Document Events / DOM API
+								
+						
+								## Starvation : The task waiting inside callback queue does not get a chance to get exceute
+													for a long time because of "MicroTask" priority 
+
+		Why we need callback queue ? 
+		-->	 if there are number of clicks happens then all the callback functions are get in that queue.	
+
+
+											------------------------------
+											
+											
+			## JS ENGINE 
+			
+					javascript runtime environment : 
+					
+						It contains js engine + API's + Event loop + Microtask queue + Callback queue etc...
+					
+			## Node.js : it having everything that js needs to execute. we can execute js outside of the browser.
+			
+			Some famous js engines 
+			
+				Chakra : microsoft edge 
+				SpiderMonkey : Firefox 
+				V8 : google , node.js , deno
+				 
+									------------------------------
+									
+			## Higher Order function : 	Takes function as a argument and returns function;
+									
+				## Array.Prototype.fn_Name = function(){};
+				
+					over here we can called fn_Name function by ==>  array.fn_Name
+					
+					
+					1. MAP : 
+								-- Transform array to the new one & return the newly created array.
+								-- For what kind of transformation we have to do is depends upon what kind of callback function 
+										we are passing to it.
+					2. Filter
+					
+								-- Filter function use to filter
+								-- pass the callback function for a specific filteration 
+								
+					3. Reduce
+							1st argument : (function)
+								-- The callback function should include two arguments 
+										1. accumulator - accumulate/appending  the values inside it.
+										2. current - represent the current array value.
+										
+							2nd argument : 
+									-- any initial values which you want to pass accumulator
+									
+							
+									--------------------------
+									
+					## Callback :
+					
+						
+					>> in e-commerce site we have to create order & then and only then need to do payments 
+						so both this things are dependant. In such cases we can use callback.
+						
+						1.  Callback hell : 
+								>> but there are lots of things in application those are dependant on each other.
+									so for every function we need to provide callback function means 
+									callback function inside another callback function inside another callback function
+									leads to callback hell problem.
+								>>  This type of code is not maintainable 
+								>> it grows horizontally not vertically 
+								>> also known as pyramid of DOOM
+								
+						2.  Inversion of Control :
+									loosing the control of code while using callbacks 
+									
+								
+											---------------------
+											
+					# Promises : 
+					
+							-- it is a empty object which get filled after data successfully fetch from API.
+							--  Promise contains : 
+									 -- PromiseType 
+									 -- PromiseState --> it will tell in what state that data is.[Pending | fulfilled | Rejected]
+									 -- PromiseResult --> It contains whatever data fetch method returns
+									 
+							-- Its is immutable. Means we cannot assign values to it.
+							-- it is a container which holds futuristic values 
+							-- it is a placeholder which latter filled with data
+							-- ** Promise is an object representing eventual completion or failure of async operation.
+							-- In promise we 'attach' the callback function to the Result object 
+							-- It gives us gurantee that this will execute only once.
+							-- promise chain : solves callback hell problem.
+							
+							
+									-----------------------------------------
+									
+									
+		## Create Promise : 
+				
+					function fn_ReturnPromise(){
+						const pr = new Promise(function(resolve,reject){
+							resolve(); // For success
+							reject();  // For Failure
+						});						
+						return pr;
+					}
+					
+					-- We can just resolve once.
+					-- Every down the promise chain we need to return.
+					
+		## Handle Error in Promise : 
+				
+					-- use .catch(function(error){console.log(error.message)});
+					
+		## Promise Chain : 
+					-- Required to 'return' the value from promise/function inside then()
+					-- we can use only one catch() to handle error in promise chain.
