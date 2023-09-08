@@ -448,12 +448,17 @@
 											-- It relaod the whole page sends the request call to html page & fetch that html & 
 													renders on the web
 													
-							--------------------
+						--------------------
 							
 							{
-									path:'restaurants/:resId' <<<<<--------- Over here resId is dynamic 
+									path:'/restaurants/:resId' <<<<<--------- Over here resId is dynamic 
 									element : <RestaurantMenu/>
 							}
+							
+							to read the path id value we can use
+								-- useParams() hook
+								-- import { useParams } from "react-router-dom";
+								-- const { resId } = useParams();
 							
 							GraphQL : Load only data which is need for our applications
 							
